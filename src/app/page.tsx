@@ -1,5 +1,8 @@
+import dbConnect from "@/lib/dbConnect";
 import Image from "next/image";
 
+dbConnect()
+dbConnect()
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
