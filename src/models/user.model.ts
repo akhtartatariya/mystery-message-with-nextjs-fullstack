@@ -13,7 +13,7 @@ const messageSchema: Schema<Message> = new Schema({
     createdAt: {
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     }
 })
 
@@ -60,7 +60,10 @@ const userSchema: Schema<User> = new Schema({
         type: Boolean,
         default: false,
     },
-    messages: [messageSchema],
+    messages: {
+        type:[messageSchema],
+        default: [],
+    },
     isAcceptingMessage: {
         type: Boolean,
         default: true,
@@ -68,6 +71,6 @@ const userSchema: Schema<User> = new Schema({
 })
 
 
-const User = (mongoose.models.User as mongoose.Model<User>) || (mongoose.model<User>("User", userSchema))
+const User = (mongoose.models.users as mongoose.Model<User>) || (mongoose.model<User>("User", userSchema))
 
 export default User

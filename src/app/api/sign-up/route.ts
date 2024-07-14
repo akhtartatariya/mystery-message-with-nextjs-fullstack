@@ -21,6 +21,7 @@ export async function POST(request: Request) {
                 return Response.json({ success: false, message: "User already exist with this email" }, { status: 400 })
             }
             else {
+                existingUserByEmail.username = username
                 const hashedPassword = await bcryptjs.hash(password, 10)
                 existingUserByEmail.password = hashedPassword
                 existingUserByEmail.verifyCode = verifyCode
@@ -47,6 +48,7 @@ export async function POST(request: Request) {
         }
 
         const emailResponse = await sendVerificationEmail(email, username, verifyCode)
+        console.log(emailResponse)
         if (!emailResponse.success) {
             return Response.json({ success: false, message: emailResponse.message }, { status: 500 })
         }
