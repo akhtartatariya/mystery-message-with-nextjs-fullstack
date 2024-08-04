@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface Message extends Document {
-    content: string
+    content: string;
     createdAt: Date
 }
 
@@ -60,10 +60,7 @@ const userSchema: Schema<User> = new Schema({
         type: Boolean,
         default: false,
     },
-    messages: {
-        type:[messageSchema],
-        default: [],
-    },
+    messages:[messageSchema],
     isAcceptingMessage: {
         type: Boolean,
         default: true,

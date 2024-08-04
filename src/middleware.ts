@@ -17,19 +17,19 @@ export async function middleware(request: NextRequest) {
     }
     if (!token && url.pathname.startsWith('/dashboard')) {
 
-        return NextResponse.redirect(new URL('/sign-in', request.url))
+        // return NextResponse.redirect(new URL('/sign-in', request.url))
     }
 
     return NextResponse.next()
 }
 
 // See "Matching Paths" below to learn more
-// export const config = {
-//     matcher: [
-//         '/',
-//         '/sign-in',
-//         '/sign-up',
-//         '/dashboard/:path*',
-//         '/verify/:path*'
-//     ]
-// }
+export const config = {
+    matcher: [
+        '/',
+        '/sign-in',
+        '/sign-up',
+        '/dashboard/:path*',
+        '/verify/:path*'
+    ]
+}

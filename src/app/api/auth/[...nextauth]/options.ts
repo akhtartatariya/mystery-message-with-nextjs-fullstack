@@ -16,6 +16,7 @@ export const authOptions: NextAuthOptions = {
             },
 
             async authorize(credentials: any): Promise<any> {
+                console.log(" credentials",credentials)
                 await dbConnect()
                 try {
                     const user = await User.findOne({
