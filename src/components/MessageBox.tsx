@@ -31,7 +31,7 @@ import { ApiResponse } from '@/types/ApiResponse'
 
 type MessageBoxProps = {
     message: Message;
-    onMessageDelete: (messageId: string) => void;
+    onMessageDelete: (messageId: any) => void;
 }
 export default function MessageBox({ message, onMessageDelete }: MessageBoxProps) {
 
@@ -39,10 +39,9 @@ export default function MessageBox({ message, onMessageDelete }: MessageBoxProps
 
     const handleDeleteConfirm = async () => {
         const response = await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`)
-
         toast({ title: response.data.message })
 
-        onMessageDelete('message._id')
+        onMessageDelete(message._id)
 
     }
     return (
