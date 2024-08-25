@@ -19,8 +19,9 @@ export default function page() {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setSwitchLoading] = useState(false)
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
 
+  console.log("status",session)
   const { toast } = useToast()
 
   const handleDeleteMessage = (messageId: string) => {
@@ -110,7 +111,7 @@ export default function page() {
       })
     }
   }
-  const { username } = session?.user as User
+  const { username } = session?.user || {}
 
   const baseUrl = `${window.location.protocol}//${window.location.host}`
 
@@ -122,6 +123,9 @@ export default function page() {
       title: 'URL Copied to clipboard',
       description: "Profile URL has been copied to clipboard",
     })
+  }
+  if (status === "loading") {
+    return <p>Loading...</p>
   }
   if (!session || !session.user) {
     return <div>Please Login</div>

@@ -6,7 +6,7 @@ import { Button } from './ui/button'
 import Link from 'next/link'
 export default function Navbar() {
   const { data: session } = useSession()
-  console.log(session)
+  console.log("navbar",session)
 
   const user: User = session?.user as User
   return (

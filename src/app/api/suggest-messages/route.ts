@@ -15,8 +15,8 @@ export async function POST(request: Request) {
         const result = await model.generateContent(prompt);
         const response = result.response;
         const text = response.text();
-
-        return Response.json({ success: true, data: text})
+        const convertText=text.split('||')
+        return Response.json({ success: true, data: convertText ,message:"generate message successfully"},{status:201})
 
     } catch (error) {
         console.error("Error generating story:", error);
